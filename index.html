@@ -5,14 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Carosello Array di Oggetti</title>
 </head>
 <body>
     <div class="container">
-        <div class="items">
-            <div class="prev"></div>
-            <div class="next"></div>
+        <!-- Carosello a sinistra -->
+        <div class="column-left">
+            <img id="img-to-show" src="img/01.webp" alt=""> 
+            <div class="description">
+                <h1 class="info-title">Marvel\'s Spiderman Miles Morale</h1> 
+                <p class="info-description">Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.</p>
+            </div>
         </div>
+        <!-- /Carosello a sinistra -->
+
+        <!-- Carosello a destra -->
+        <div class="column-right">
+            <i class="ms-arrow-up fa-solid fa-chevron-up"></i>
+            <img id="img-1" class="border" src="img/01.webp" alt="">
+            <img id="img-2" src="img/02.webp" alt="">
+            <img id="img-3" src="img/03.webp" alt="">
+            <img id="img-4" src="img/04.webp" alt="">
+            <img id="img-5" src="img/05.webp" alt="">
+            <i class="ms-arrow-down fa-solid fa-chevron-down"></i>
+        </div>
+        <!-- /Carosello a destra -->
     </div>
     
     <script src="js/main.js"></script>
