@@ -24,59 +24,84 @@ const images = [
     }
 ];
 
-/* MILESTONE 1
-Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-Al click dell'utente sulle frecce verso l'alto o il basso, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
+// CONF
+let currentImageindex = 0;
+const currentImageContainer = document.querySelector(`.current-image`);
+const thumbsContainer = document.querySelector(`.thumbs`);
 
-Milestone 2:
-Aggiungere il **ciclo infinito** del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso l'alto,
-la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso il basso.
-*/
+//MAIN
+const templateCurrentImage = document.getElementById(`current-image`).content.cloneNode(true);
 
-const img = document.getElementById("first-img");
-const title = document.querySelector(".info-title");
-const description = document.querySelector(".info-description");
-const allImages = document.querySelectorAll(".column-right img");
-let currentImgIndex = 0;
-let selectedImage = 0;
+templateCurrentImage.querySelector(`img`).src = images[currentImageindex].image;
+templateCurrentImage.querySelector(`img`).alt = images[currentImageindex].title;
+templateCurrentImage.querySelector(`.current-image-text h3`).innerHTML = images[currentImageindex].title;
+templateCurrentImage.querySelector(`.current-image-text p`).innerHTML = images[currentImageindex].text;
 
-const arrowUpButton = document.querySelector(".ms-arrow-up").addEventListener("click", function(){
-    if (currentImgIndex === 0){
-        currentImgIndex = images.length - 1;
-    } else {
-        currentImgIndex -= 1;        
+currentImageContainer.append(templateCurrentImage);
+
+//THUMBS
+images.forEach((elm, index) => {
+    const templateThumb = document.getElementById(`thumb`).content.cloneNode(true);
+
+    if (index === currentImageindex){
+        templateThumb.querySelector(`.thumb`).classList.add(`active`);
     }
-    img.src = images[currentImgIndex].image;
-    title.innerHTML = images[currentImgIndex].title;
-    description.innerHTML = images[currentImgIndex].text;
+    templateThumb.querySelector(`img`).src = elm.image;
+    templateThumb.querySelector(`img`).alt = elm.title;
 
-    if(selectedImage === 0){
-        allImages[selectedImage].classList.toggle("border");
-        allImages[selectedImage = 4].classList.toggle("border");
-    } else {
-        allImages[selectedImage].classList.toggle("border");
-        allImages[selectedImage-=1].classList.toggle("border");
-    }    
+    thumbsContainer.append(templateThumb);
+})
+
+//seleziono tutte le thumbs
+
+const thumbs = document.querySelectorAll(`.thumb`);
+console.log(thumbs)
+//next slide
+
+const btnNextSlide = document.querySelector(`.next-slide`);
+
+btnNextSlide.addEventListener('click', function() {
+
+    thumbs[currentImageindex].classList.remove(`active`);
+
+    if (currentImageindex < images.length - 1){
+        currentImageindex++;
+    }else{
+        currentImageindex = 0;
+    }
+
+
+
+    thumbs[currentImageindex].classList.add(`active`);
+
+    currentImageContainer.querySelector(`img`).alt = images[currentImageindex].title;
+    currentImageContainer.querySelector(`img`).src = images[currentImageindex].image;
+    currentImageContainer.querySelector(`.current-image-text h3`).innerHTML = images[currentImageindex].title;
+    currentImageContainer.querySelector(`.current-image-text p`).innerHTML = images[currentImageindex].text;
+
 });
 
-const arrowDownButton = document.querySelector(".ms-arrow-down").addEventListener("click", function(){
-    if (currentImgIndex === images.length - 1){
-        currentImgIndex = 0;
-    } else {
-        currentImgIndex += 1;        
-    }
-    img.src = images[currentImgIndex].image;
-    title.innerHTML = images[currentImgIndex].title;
-    description.innerHTML = images[currentImgIndex].text;
+//prev slide
 
-    if(selectedImage === 0){
-        allImages[selectedImage].classList.toggle("border");
-        allImages[selectedImage+=1].classList.toggle("border");
-    } else {
-        allImages[selectedImage].classList.toggle("border");
-        if(selectedImage === 4){
-            selectedImage = -1;
-        }
-        allImages[selectedImage+=1].classList.toggle("border");
-    }    
+const btnPrevSlide = document.querySelector(`.prev-slide`);
+
+btnPrevSlide.addEventListener('click', function() {
+
+    thumbs[currentImageindex].classList.remove(`active`);
+
+    if (currentImageindex > 0){
+        currentImageindex--;
+    }else{
+        currentImageindex = images.length - 1;
+    }
+
+
+
+    thumbs[currentImageindex].classList.add(`active`);
+
+    currentImageContainer.querySelector(`img`).alt = images[currentImageindex].title;
+    currentImageContainer.querySelector(`img`).src = images[currentImageindex].image;
+    currentImageContainer.querySelector(`.current-image-text h3`).innerHTML = images[currentImageindex].title;
+    currentImageContainer.querySelector(`.current-image-text p`).innerHTML = images[currentImageindex].text;
+
 });

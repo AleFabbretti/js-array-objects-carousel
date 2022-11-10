@@ -9,29 +9,33 @@
     <title>Carosello Array di Oggetti</title>
 </head>
 <body>
-        <div class="container">
-            <!-- Carosello a sinistra -->
-            <div class="column-left d-none active">
-                <img id="first-img" src="img/01.webp" alt=""> 
-                <div class="description">
-                    <h1 class="info-title">Marvel's Spiderman Miles Morale</h1> 
-                    <p class="info-description">Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.</p>
-                </div>
-            </div>
-            <!-- /Carosello a sinistra -->
-
-            <!-- Carosello a destra -->
-            <div class="column-right thumbnail">
-                <i class="ms-arrow-up fa-solid fa-chevron-up"></i>
-                <img id="img-1" class="border" src="img/01.webp" alt="">
-                <img id="img-2" src="img/02.webp" alt="">
-                <img id="img-3" src="img/03.webp" alt="">
-                <img id="img-4" src="img/04.webp" alt="">
-                <img id="img-5" src="img/05.webp" alt="">
-                <i class="ms-arrow-down fa-solid fa-chevron-down"></i>
-            </div>
-            <!-- /Carosello a destra -->
+    <div class="carousel-container">
+        <div class="current-image">
         </div>
+        <div class="thumbs">
+            <button class="prev-slide" type="button">
+                <i class="fa-solid fa-chevron-up"></i>
+            </button>
+            <button class="next-slide" type="button">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+    <!-- template current image -->
+    <template id="current-image">
+        <img src="img/01.webp" alt="">
+            <div class="current-image-text">
+                <h3>Marvel's Spiderman Miles Morale</h3>
+                <p>Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.</p>
+            </div>
+    </template>
+    <!-- template thumb carousel    -->
+    <template id="thumb">
+        <div class="thumb">
+            <img src="img/01.webp" alt="">
+        </div>
+    </template>
+
     <script src="js/main.js"></script>
 </body>
 </html>
